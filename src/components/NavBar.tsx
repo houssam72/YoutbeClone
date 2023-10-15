@@ -15,7 +15,7 @@ const NavBar = ({ setSideBar, sideBar }: sideBarDispatch) => {
     ? "border-[#2E74B0] border-2"
     : "border-[#2d2d2d] border-2";
   return (
-    <div className="w-full  z-40 bg-[#0f0f0f] flex items-center  px-[1.3%] text-2xl absolute top-0 h-[90px]">
+    <div className=" w-full h-full bg-[#0f0f0f] flex items-center  text-2xl ">
       <div className="w-[20%]">
         <YoutubeBar setSideBar={setSideBar} sideBar={sideBar} />
       </div>

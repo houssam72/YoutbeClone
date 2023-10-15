@@ -120,7 +120,7 @@ const SideBar = ({ setSideBar, sideBar }: sideBarDispatch) => {
     ],
   ];
   return (
-    <div className="z-50 shadow-lg  shadow-[#c7c7c7] w-[15%] min-w-[230px] h-full overflow-auto text-xl bg-[#0f0f0f] absolute top-0 left-0">
+    <div className="shadow-lg  shadow-[#c7c7c7]  h-full  overflow-auto text-xl bg-[#0f0f0f] ">
       <div className="pt-[18px] pl-[8%] pr-[10%] min-h-full">
         <div>
           <div>
