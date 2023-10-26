@@ -12,12 +12,11 @@ const Card = ({ cardData }: CardProps) => {
         <div className="relative w-full h-full">
           <img
             src={cardData.videoPicture}
-            // src="./houssam.jpg"
             alt="CardImg"
             className="w-full h-full object-cover rounded-3xl border-solid"
           />
           <div className="absolute right-4 bottom-2 text-sm font-bold bg-[#0f0f0f] p-1 rounded-md">
-            17:50
+            {cardData.videoDuration}
           </div>
         </div>
       </div>
@@ -25,7 +24,7 @@ const Card = ({ cardData }: CardProps) => {
         <div className="mr-2">
           <div className=" flex items-center ">
             <img
-              src="./houssam.jpg"
+              src={cardData.ChannelPicture}
               alt="Profile"
               className=" rounded-[50%] h-8 w-8  align-middle border-none"
             />
@@ -35,7 +34,7 @@ const Card = ({ cardData }: CardProps) => {
           <div className="">{cardData.title}</div>
           <div className="text-sm my-[2px] text-zinc-400">
             <div className="">{cardData.ChannelFullName}</div>
-            <div>{cardData.viewsNumber}k . il y'as un an</div>
+            <div>{cardData.viewsNumber}+. il y'as un an</div>
           </div>
         </div>
       </div>

@@ -11,9 +11,9 @@ export type homeCardData = {
   videoDuration: string;
   ChannelFullName: string;
   ChannelPicture: string;
-  viewsNumber: number;
+  viewsNumber: string;
   publishTime: string;
-  title:string
+  title: string;
 };
 
 // export type homeCardData2={
@@ -47,5 +47,6 @@ export type homeCardData = {
 export type InitialState = {
   loading: boolean;
   data: homeCardData[];
+  nextPageToken: string;
   error: string;
 };

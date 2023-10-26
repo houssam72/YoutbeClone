@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import Card from "../components/Card";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { fetchHomeData } from "../store/Reducers/getHomePageReduce";
+import {
+  clearVideos,
+  fetchHomeData,
+} from "../store/Reducers/getHomePageReduce";
 import { store } from "../store";
 import { homeCardData } from "../Types";
 import Spinner from "../components/Spinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 type Props = {
   sideBar: boolean;
@@ -16,27 +20,49 @@ const Home = ({ sideBar }: Props) => {
   const videosData = useAppSelector((state) => state.homeData.data);
   const loading = useAppSelector((state) => state.homeData.loading);
   const error = useAppSelector((state) => state.homeData.error);
+
   useEffect(() => {
-    dispatch(fetchHomeData());
+    const fetchData = async () => {
+      try {
+        console.log("Test123");
+        // Dispatch the first action and await its completion
+        // Dispatch the second action and await its completion
+        dispatch(clearVideos());
+        await dispatch(fetchHomeData(false));
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
-  const elementsArray = new Array(20).fill(null);
+
   return (
     <div className="h-full w-full px-[2%] pt-[2%] overflow-auto ">
-      {loading ? (
-        <Spinner />
-      ) : error.length ? (
+      {error.length ? (
         "Error"
       ) : (
-        <div className="flex w-full flex-wrap justify-between">
-          {videosData.map((_, index) => (
-            <div
-              key={index}
-              className={` mb-10 ${sideBar ? "w-[32%]" : "w-[24%]"}  `}
-            >
-              <Card key={index} cardData={videosData[index]} />
-            </div>
-          ))}{" "}
-        </div>
+        <InfiniteScroll
+          dataLength={videosData.length}
+          next={() => dispatch(fetchHomeData(true))}
+          hasMore={videosData.length < 500}
+          loader={loading && <Spinner />}
+          height={650}
+          endMessage={
+            error.length && <p style={{ textAlign: "center" }}>{error}</p>
+          }
+        >
+          <div className="flex w-full flex-wrap justify-between">
+            {videosData.map((_, index) => (
+              <div
+                key={index}
+                className={`mb-10 ${sideBar ? "w-[32%]" : "w-[24%]"}`}
+              >
+                <Card key={index} cardData={videosData[index]} />
+              </div>
+            ))}{" "}
+          </div>
+        </InfiniteScroll>
       )}
     </div>
   );
