@@ -14,13 +14,13 @@ export const formatDurationFromISO8601 = (isoDuration: string) => {
   seconds =
     parseInt(seconds) >= 0 && parseInt(seconds) <= 9 ? `0${seconds}` : seconds;
 
-  if (years != "0") {
+  if (years !== "0") {
     return `${years}:${days}:${hours}:${minutes}:${seconds}`;
   }
-  if (days != "0") {
+  if (days !== "0") {
     return `${days}:${hours}:${minutes}:${seconds}`;
   }
-  if (hours != "0") {
+  if (hours !== "0") {
     return `${hours}:${minutes}:${seconds}`;
   }
   return `${minutes}:${seconds}`;

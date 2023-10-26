@@ -5,8 +5,6 @@ import {
   clearVideos,
   fetchHomeData,
 } from "../store/Reducers/getHomePageReduce";
-import { store } from "../store";
-import { homeCardData } from "../Types";
 import Spinner from "../components/Spinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -24,9 +22,6 @@ const Home = ({ sideBar }: Props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("Test123");
-        // Dispatch the first action and await its completion
-        // Dispatch the second action and await its completion
         dispatch(clearVideos());
         await dispatch(fetchHomeData(false));
       } catch (error) {
